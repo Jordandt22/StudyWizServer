@@ -33,7 +33,7 @@ module.exports = {
 
     // If the user is not the creator, check if the set is private
     if (!isCreator && setData.privacy.private)
-      return errorHandler(res, 403, "SETS", "THIS SET IS ON PRIVATE MODE");
+      return errorHandler(res, 200, "SETS", "THIS SET IS ON PRIVATE MODE");
 
     // Checking if the set has been added already to the user's set list
     const setAdded = sets.some((set) => set.setId === setId);
@@ -85,11 +85,18 @@ module.exports = {
 
     // If the user is not the creator, check if the set is private
     if (!isCreator && private)
-      return errorHandler(res, 403, "SETS", "THIS SET IS ON PRIVATE MODE");
+      return errorHandler(res, 200, "SETS", "THIS SET IS ON PRIVATE MODE");
 
     // If the user is not the creator, check if hide creator mode is on
     if (!isCreator && hideCreator)
-      return errorHandler(res, 200, "SETS", "THIS SET IS ON HIDE CREATOR MODE");
+      return res.status(200).json({
+        isCreator,
+        creator: {
+          fbId: "AnonymousUser1234",
+          displayName: "Anonymous",
+          photoURL: null,
+        },
+      });
 
     // Creator
     if (isCreator) {
@@ -133,7 +140,7 @@ module.exports = {
 
     // If the user is not the creator, check if the set is private
     if (!isCreator && private)
-      return errorHandler(res, 403, "SETS", "THIS SET IS ON PRIVATE MODE");
+      return errorHandler(res, 200, "SETS", "THIS SET IS ON PRIVATE MODE");
 
     // Checking if there are any users
     if (users.length < 1) return res.status(200).json({ users: [] });

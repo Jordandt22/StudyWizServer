@@ -83,6 +83,3 @@ const server = http.createServer(app);
 server.listen(PORT, () => {
   console.log(`CORS Enabled Server, Listening to port: ${PORT}...`);
 });
-
-// Export the Express API
-module.exports = server;

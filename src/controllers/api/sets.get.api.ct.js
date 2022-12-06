@@ -172,7 +172,11 @@ module.exports = {
         { $and: [{ creatorFbId: fbId }, { $or: formatedSets }] },
         {
           $and: [
-            { creatorFbId: { $not: { $regex: cleanStringForRegex(fbId) } } },
+            {
+              creatorFbId: {
+                $not: { $regex: cleanStringForRegex(fbId) },
+              },
+            },
             { "privacy.private": false },
             { $or: formatedSets },
           ],

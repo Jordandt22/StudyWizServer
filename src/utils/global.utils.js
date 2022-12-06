@@ -3,5 +3,6 @@ module.exports = {
     res
       .status(status)
       .json({ error: `${route} - ${msg}`, extra: props ? props : null }),
-  cleanStringForRegex: (str) => str?.replaceAll(/[^a-zA-Z\d:]/gi, ""),
+  cleanStringForRegex: (str) =>
+    str?.toString().replaceAll(/[^a-zA-Z\d:]/gi, ""),
 };

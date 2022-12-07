@@ -112,7 +112,7 @@ module.exports = {
     };
     const ownedByOthersQuery = {
       $and: [
-        { creatorFbId: { $not: { $regex: cleanStringForRegex(fbId) } } },
+        { creatorFbId: { $not: { $regex: fbId } } },
         { "privacy.private": false },
         titleQuery,
       ],

@@ -5,7 +5,6 @@ const { USER_KEY, SET_KEY } = require("../../redis/redis.keys");
 const { getMultipleSetsData } = require("../../utils/sets.utils");
 const {
   errorHandler,
-  cleanStringForRegex,
 } = require("../../utils/global.utils");
 const {
   getFBUser,
@@ -174,7 +173,7 @@ module.exports = {
           $and: [
             {
               creatorFbId: {
-                $not: { $regex: cleanStringForRegex(fbId) },
+                $not: { $regex: fbId },
               },
             },
             { "privacy.private": false },
